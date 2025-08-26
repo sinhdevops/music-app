@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export const ArtistCard = ({ artist }: { artist: { name: string; img: string } }) => (
 	<motion.div
@@ -8,7 +9,7 @@ export const ArtistCard = ({ artist }: { artist: { name: string; img: string } }
 		transition={{ duration: 0.3 }}
 		className="flex min-w-[80px] flex-col items-center"
 	>
-		<img src={artist.img} className="mb-2 h-20 w-20 rounded-full" />
+		<Image alt="artist" src={artist.img} className="mb-2 h-20 w-20 rounded-full" />
 		<span>{artist.name}</span>
 	</motion.div>
 );

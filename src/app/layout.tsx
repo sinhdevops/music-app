@@ -5,8 +5,9 @@ import type { Metadata, Viewport } from "next";
 
 import "@/styles/globals.css";
 import ReactQueryProvider from "@/providers/react-query-provider";
-import Header from "@/layouts/header";
-import Sidebar from "@/layouts/sidebar";
+import { Sidebar } from "@/layouts/sidebar";
+import { PlayerBar } from "@/layouts/player-bar";
+import { Topbar } from "@/layouts/topbar";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
 
@@ -90,17 +91,16 @@ export default function RootLayout({
 		// 	}}
 		// >
 		<html lang="en" dir="ltr" suppressHydrationWarning>
-			<body id="home" className="scroll-smooth">
+			<body id="home" className="flex min-h-screen flex-col scroll-smooth">
 				<ReactQueryProvider>
-					<div className="mb-[90px] flex h-[calc(100vh-90px)] overflow-hidden">
-						<div className="h-[calc(100vh-90px)] w-[240px]">
-							<Sidebar />
-						</div>
-						<div className="w-[calc(100%-240px)] overflow-x-hidden overflow-y-scroll bg-[#170f23]">
-							<Header />
-							<div className="mt-[70px] h-100">{children}</div>
+					<div className="flex flex-1">
+						<Sidebar />
+						<div className="flex min-w-0 flex-1 flex-col">
+							<Topbar />
+							<main className="min-w-0 flex-1 space-y-8 p-4">{children}</main>
 						</div>
 					</div>
+					<PlayerBar />
 				</ReactQueryProvider>
 			</body>
 		</html>
