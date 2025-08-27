@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
 	output: "standalone",
 	images: {
-		domains: ["photo-resize-zmp3.zmdcdn.me"],
+		domains: ["photo-resize-zmp3.zmdcdn.me", "images.unsplash.com"],
 	},
 };
 

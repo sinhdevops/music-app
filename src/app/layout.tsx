@@ -4,10 +4,10 @@
 import type { Metadata, Viewport } from "next";
 
 import "@/styles/globals.css";
-import ReactQueryProvider from "@/providers/react-query-provider";
 import { Sidebar } from "@/layouts/sidebar";
-import { PlayerBar } from "@/layouts/player-bar";
-import { Topbar } from "@/layouts/topbar";
+import { Providers } from "@/app/provider";
+import { Header } from "@/layouts/header";
+import { MusicPlayer } from "@/components/music-player";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
 
@@ -90,18 +90,20 @@ export default function RootLayout({
 		// 		},
 		// 	}}
 		// >
-		<html lang="en" dir="ltr" suppressHydrationWarning>
-			<body id="home" className="flex min-h-screen flex-col scroll-smooth">
-				<ReactQueryProvider>
-					<div className="flex flex-1">
-						<Sidebar />
-						<div className="flex min-w-0 flex-1 flex-col">
-							<Topbar />
-							<main className="min-w-0 flex-1 space-y-8 p-4">{children}</main>
+		<html lang="en">
+			<body>
+				<Providers>
+					<div className="flex h-screen flex-col bg-gray-900 text-white">
+						<div className="flex flex-1 overflow-hidden">
+							<Sidebar />
+							<main className="flex flex-1 flex-col overflow-hidden">
+								<Header />
+								<div className="flex-1 overflow-y-auto p-6">{children}</div>
+							</main>
 						</div>
+						<MusicPlayer />
 					</div>
-					<PlayerBar />
-				</ReactQueryProvider>
+				</Providers>
 			</body>
 		</html>
 	);

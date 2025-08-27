@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 
 const getTop100 = async () => {
 	const res = await http.get<IGenericResponse<ISectionMusic[]>>("/api/top-100");
-	console.log(res);
 	return res.data;
 };
 
